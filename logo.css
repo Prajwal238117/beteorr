@@ -1,0 +1,35 @@
+.beteor-logo {
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    /* Create a multi-color gradient for a richer effect */
+    background: linear-gradient(135deg, #6a14ff, #0361f8, #3dec08);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Animate the gradient background */
+    animation: gradientShift 4s ease infinite;
+    /* Add a subtle shadow and stroke for depth */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .beteor-logo:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  

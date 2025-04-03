@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Wheel - Beteor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lucky-wheel.css" />
+    <link rel="stylesheet" href="toast.css" />
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <div class="beteor-logo">Beteor</div>
+            </a>
+        </div>
+        <div id="balanceInfo" class="user-balance">NPR 0</div>
+        <button id="menuToggle" class="menu-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu"></div>
+
+    <!-- Main Content -->
+    <main class="game-container">
+        <div class="wheel-container">
+            <div class="wheel">
+                <div class="wheel-inner">
+                    <div class="wheel-segment" style="--i:0; --color:#FF6B6B">2x</div>
+                    <div class="wheel-segment" style="--i:1; --color:#4ECDC4">1.5x</div>
+                    <div class="wheel-segment" style="--i:2; --color:#45B7D1">3x</div>
+                    <div class="wheel-segment" style="--i:3; --color:#96CEB4">0.5x</div>
+                    <div class="wheel-segment" style="--i:4; --color:#FFEEAD">1.2x</div>
+                    <div class="wheel-segment" style="--i:5; --color:#D4A5A5">5x</div>
+                    <div class="wheel-segment" style="--i:6; --color:#9B59B6">0.8x</div>
+                    <div class="wheel-segment" style="--i:7; --color:#3498DB">1.8x</div>
+                </div>
+                <div class="wheel-pointer"></div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <div class="bet-amount">
+                <input type="number" id="betAmount" min="10" value="10" step="10" />
+                <button class="quick-bet" data-amount="10">10</button>
+                <button class="quick-bet" data-amount="50">50</button>
+                <button class="quick-bet" data-amount="100">100</button>
+                <button class="quick-bet" data-amount="500">500</button>
+            </div>
+            <button id="spinButton" class="spin-btn">SPIN</button>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat-box">
+                <h3>Last Win</h3>
+                <p id="lastWin">0x</p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Spins</h3>
+                <p id="totalSpins">0</p>
+            </div>
+            <div class="stat-box">
+                <h3>Win Rate</h3>
+                <p id="winRate">0%</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="lucky-wheel.js"></script>
+    <script src="toast.js"></script>
+</body>
+</html> 

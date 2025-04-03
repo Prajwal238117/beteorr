@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="User Profile - Beteor" />
+    <meta name="theme-color" content="#7c3aed" />
+    <title>Profile - Beteor</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="logo.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="toast.css" />
+    <link rel="stylesheet" href="transactions.css" />
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">
+          <a href="/" aria-label="Beteor Home">
+            <div class="beteor-logo">Beteor</div>
+          </a>
+        </div>
+        
+        <div id="balanceInfo" class="user-balance" role="status" aria-live="polite">
+          <span>NPR 0</span>
+        </div>
+        
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="sideMenu">
+          <svg id="menuIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+    
+      <!-- Balance Modal -->
+      <div id="balanceModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+          <div class="modal-header">
+            <h2 id="modalTitle" class="modal-title">Balance Options</h2>
+            <button class="modal-close" aria-label="Close modal">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-option" id="depositOption">
+              <div class="modal-option-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 4v16m-8-8h16" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="modal-option-content">
+                <div class="modal-option-title">Deposit</div>
+                <div class="modal-option-description">Add funds to your account</div>
+              </div>
+            </div>
+            <div class="modal-option" id="withdrawOption">
+              <div class="modal-option-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 4v16M4 12h16" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="modal-option-content">
+                <div class="modal-option-title">Withdraw</div>
+                <div class="modal-option-description">Withdraw funds from your account</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Off-Canvas Side Menu -->
+      <aside id="sideMenu" class="side-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <div class="menu-header">
+          <button id="closeMenu" class="close-menu" aria-label="Close menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <nav class="menu-links" role="navigation" aria-label="Side navigation">
+            <ul>
+                <li><a href="profile.html" aria-live="polite">My Profile</a></li>
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#" onclick="window.showTransactionModal('deposit'); return false;">Deposit</a></li>
+                <li><a href="#" onclick="window.showTransactionModal('withdraw'); return false;">Withdraw</a></li>
+              </ul>
+        </nav>
+        
+        <div class="menu-bottom">
+          <div class="theme-toggle-container" role="group" aria-label="Theme selection">
+            <label class="toggle">
+              <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-icon" aria-hidden="true"></span>
+            <span class="toggle-label">Toggle Theme</span>
+          </div>
+        </div>
+      </aside>
+
+    <!-- Main Content -->
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <h1 id="userName">Loading...</h1>
+                <p id="userEmail">Loading...</p>
+                <p>Member since: <span id="memberSince">Loading...</span></p>
+            </div>
+        </div>
+
+        <div class="profile-sections">
+            <!-- Account Settings Section -->
+            <section class="profile-section">
+                <h2>Account Settings</h2>
+                <div class="settings-grid">
+                    <button id="changePasswordBtn" class="settings-btn">Change Password</button>
+                    <button id="updateProfileBtn" class="settings-btn">Update Profile</button>
+                </div>
+            </section>
+
+            <!-- Transaction History Section -->
+            <section class="profile-section">
+                <h2>Transaction History</h2>
+                <div class="transaction-filters">
+                    <select id="transactionType">
+                        <option value="all">All Transactions</option>
+                        <option value="deposit">Deposits</option>
+                        <option value="withdraw">Withdrawals</option>
+                    </select>
+                </div>
+                <div id="transactionHistory" class="history-table">
+                    <!-- Transaction history will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Danger Zone Section -->
+            <section class="profile-section danger-zone">
+                <h2>Danger Zone</h2>
+                <div class="danger-actions">
+                    <div class="danger-item">
+                        <h3>Delete Account</h3>
+                        <p>This action cannot be undone. All your data will be permanently deleted.</p>
+                        <button id="deleteAccountBtn" class="danger-btn">Delete Account</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Change Password</h2>
+                <button class="modal-close" data-modal="changePasswordModal">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm" class="settings-form">
+                    <input type="password" id="currentPassword" placeholder="Current Password" required />
+                    <input type="password" id="newPassword" placeholder="New Password" required />
+                    <input type="password" id="confirmPassword" placeholder="Confirm New Password" required />
+                    <div class="modal-actions">
+                        <button type="submit" class="cta-btn">Update Password</button>
+                        <button type="button" class="cancel-btn" data-modal="changePasswordModal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Profile Modal -->
+    <div id="updateProfileModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Update Profile</h2>
+                <button class="modal-close" data-modal="updateProfileModal">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateProfileForm" class="settings-form">
+                    <input type="text" id="displayName" placeholder="Display Name" required />
+                    <div class="modal-actions">
+                        <button type="submit" class="cta-btn">Update Profile</button>
+                        <button type="button" class="cancel-btn" data-modal="updateProfileModal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div id="deleteModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Delete Account</h2>
+                <button class="modal-close" data-modal="deleteModal">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button id="confirmDeleteBtn" class="danger-btn">Yes, Delete My Account</button>
+                    <button id="cancelDeleteBtn" class="cta-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container for notifications -->
+    <div id="toast-container" role="alert" aria-live="polite"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="profile.js"></script>
+    <script src="toast.js"></script>
+</body>
+</html> 

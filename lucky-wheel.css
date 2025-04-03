@@ -1,0 +1,186 @@
+.game-container {
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 2rem auto;
+}
+
+.wheel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--card-bg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.wheel-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.wheel-segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: 0 100%;
+    transform: rotate(calc(45deg * var(--i)));
+    background: var(--color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    transform: translateX(-50%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.bet-amount {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.bet-amount input {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--light);
+    font-size: 1rem;
+    min-width: 100px;
+}
+
+.quick-bet {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--light);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-bet:hover {
+    background: var(--primary);
+}
+
+.spin-btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.spin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.spin-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.game-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.stat-box {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    font-size: 0.875rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-box p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--light);
+}
+
+@media (max-width: 768px) {
+    .wheel-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .wheel-segment {
+        font-size: 1.25rem;
+    }
+
+    .game-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .wheel-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .wheel-segment {
+        font-size: 1rem;
+    }
+
+    .bet-amount {
+        flex-direction: column;
+    }
+
+    .quick-bet {
+        width: 100%;
+    }
+} 

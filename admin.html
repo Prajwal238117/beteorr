@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Gambling Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Admin Panel</div>
+        <div class="nav-menu">
+            <button id="logoutBtn" class="nav-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div id="transactions" class="transactions-section">
+            <!-- Transactions will be loaded here -->
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script type="module" src="firebaseConfig.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+</html> 

@@ -1,0 +1,112 @@
+.admin-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.transactions-section {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-section h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+    font-weight: 600;
+}
+
+td {
+    color: #ccc;
+}
+
+tr:hover {
+    background-color: #222;
+}
+
+.verify-btn, .reject-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+}
+
+.verify-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.verify-btn:hover {
+    background-color: #45a049;
+}
+
+.reject-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.reject-btn:hover {
+    background-color: #da190b;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .admin-container {
+        padding: 1rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .transactions-section {
+        padding: 1rem;
+    }
+
+    .transactions-section h2 {
+        font-size: 1.25rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .verify-btn, .reject-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+} 
